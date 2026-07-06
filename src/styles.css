@@ -1,5 +1,12 @@
 :root {
   --font: "Source Han Sans SC", "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --game-viewport-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --game-viewport-height: 100dvh;
+  }
 }
 
 * {
@@ -35,10 +42,10 @@ img {
 
 .home-screen {
   position: relative;
-  width: min(100vw, 56.25vh);
-  height: min(100vh, 177.7778vw);
+  width: max(100vw, calc(var(--game-viewport-height) * .5625));
+  height: max(var(--game-viewport-height), 177.7778vw);
   aspect-ratio: 1080 / 1920;
-  margin: auto;
+  margin: 0 auto;
   overflow: hidden;
   isolation: isolate;
 }
@@ -48,10 +55,10 @@ img {
 .page4-screen,
 .page5-screen {
   position: relative;
-  width: min(100vw, 56.25vh);
-  height: min(100vh, 177.7778vw);
+  width: max(100vw, calc(var(--game-viewport-height) * .5625));
+  height: max(var(--game-viewport-height), 177.7778vw);
   aspect-ratio: 1080 / 1920;
-  margin: auto;
+  margin: 0 auto;
   overflow: hidden;
   isolation: isolate;
   touch-action: none;
