@@ -827,6 +827,10 @@ function renderPage3() {
     const scatterExtraFabrics = () => {
       if (!extraFabrics || extraFabrics.childElementCount > 0) return;
 
+      const desktop = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine)").matches;
+      const distanceScale = desktop ? extraFabrics.getBoundingClientRect().width / 390 : 1;
+      const fabricDistance = (value) => `${value * distanceScale}px`;
+
       extraFabrics.innerHTML = pickExtraFabrics().map((piece, index) => {
         const settleSlot = fabricSettleSlots[index % fabricSettleSlots.length];
         const endX = Math.round(clamp(settleSlot.x + randomBetween(-24, 24), -126, 126));
@@ -853,7 +857,7 @@ function renderPage3() {
         return `
           <div
             class="extra-fabric-piece"
-            style="z-index: ${zIndex}; --fabric-image: url('${piece.src}'); --fabric-size: ${piece.size}; --fabric-pos: ${piece.pos}; --fabric-ratio: ${piece.ratio}; --fabric-clip: ${piece.clip}; --start-x: ${startX}px; --start-y: ${startY}px; --pop-x: ${popX}px; --pop-y: ${popY}px; --bloom-x: ${bloomX}px; --end-x: ${endX}px; --end-y: ${endY}px; --fabric-rot: ${rot}deg; --fabric-flip-x: ${flipX}; --fabric-flip-y: ${flipY}; --fabric-width: ${width}%; --fabric-delay: ${delay}ms;"
+            style="z-index: ${zIndex}; --fabric-image: url('${piece.src}'); --fabric-size: ${piece.size}; --fabric-pos: ${piece.pos}; --fabric-ratio: ${piece.ratio}; --fabric-clip: ${piece.clip}; --start-x: ${fabricDistance(startX)}; --start-y: ${fabricDistance(startY)}; --pop-x: ${fabricDistance(popX)}; --pop-y: ${fabricDistance(popY)}; --bloom-x: ${fabricDistance(bloomX)}; --end-x: ${fabricDistance(endX)}; --end-y: ${fabricDistance(endY)}; --fabric-rot: ${rot}deg; --fabric-flip-x: ${flipX}; --fabric-flip-y: ${flipY}; --fabric-width: ${width}%; --fabric-delay: ${delay}ms;"
           ></div>
         `;
       }).join("");
