@@ -2403,3 +2403,26 @@ img {
     animation: none;
   }
 }
+
+
+/* Fit the complete portrait canvas on desktop; retain the touch layout. */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  #app {
+    background: #fff;
+  }
+
+  #app {
+    align-items: center;
+  }
+
+  .home-screen,
+  .page2-screen,
+  .page3-screen,
+  .page4-screen,
+  .page5-screen {
+    width: min(var(--game-viewport-width), calc(var(--game-viewport-height) * .5625));
+    height: min(var(--game-viewport-height), calc(var(--game-viewport-width) * 1.777778));
+  }
+}
