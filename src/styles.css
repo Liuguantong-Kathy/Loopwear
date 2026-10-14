@@ -2426,3 +2426,16 @@ img {
     height: min(var(--game-viewport-height), calc(var(--game-viewport-width) * 1.777778));
   }
 }
+
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .page4-outline-image {
+    width: 82%;
+    height: 86%;
+  }
+
+  .page4-outline-image[data-product="海边托特包"] {
+    width: 74%;
+    height: 78%;
+  }
+}
